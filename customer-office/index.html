@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+
+<head>
+    <title>Космоснимки онлайн</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=cp1251" />
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="./css/jslider.css" rel="stylesheet" type="text/css">
+</head>
+
+<body ng-controller="myCtrl">
+        <!--[if lt IE 8]><p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновить ваш браузер</a> to improve your experience.</p><![endif]-->
+        <div class="fixed-grid">
+            <div class="content" id="map-wrapper">
+                <div class="map leaflet-container leaflet-fade-anim" id="map" tabindex="0">
+                    <div class="leaflet-google-layer leaflet-top leaflet-left" id="_GMapContainer_30" style="z-index: auto; width: 1902px; height: 300px; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
+                        <div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+                            <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, -9, -46);">
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
+                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                            <div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;">
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 872px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 872px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1128px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 616px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 616px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1128px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 360px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 360px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1384px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1384px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 104px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 104px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1640px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1640px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: -152px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: -152px; top: 195px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1896px; top: -61px;"></div>
+                                                <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1896px; top: 195px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div>
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div>
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"></div>
+                                    <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                        <div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;">
+                                            <div style="transform: translateZ(0px); position: absolute; left: 872px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i19!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 872px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i19!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1128px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i20!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 616px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i18!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 616px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i18!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1128px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i20!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 360px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i17!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 360px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i17!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1384px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i21!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1384px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i21!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 104px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i16!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 104px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i16!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1640px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i22!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1640px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt0.googleapis.com/vt?pb=!1m4!1m3!1i5!2i22!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: -152px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i15!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: -152px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i15!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1896px; top: -61px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i23!3i9!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                            <div style="transform: translateZ(0px); position: absolute; left: 1896px; top: 195px; transition: opacity 200ms ease-out;"><img src="http://mt1.googleapis.com/vt?pb=!1m4!1m3!1i5!2i23!3i10!2m3!1e0!2sm!3i318422811!3m9!2sru!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0" draggable="false" style="width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%;"></div>
+                                <div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, -9, -46);">
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div>
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div>
+                                    <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;">
+                                <a target="_blank" style="position: static; overflow: visible; float: none; display: inline;" href="https://maps.google.com/maps?ll=55.751849,37.617188&amp;z=5&amp;t=m&amp;hl=ru&amp;gl=US&amp;mapclient=apiv3" title="Нажмите, чтобы отобразить эту область в Картах Google">
+                                    <div style="width: 62px; height: 26px; cursor: pointer;"><img src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 62px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 801px; top: 60px; background-color: white;">
+                                <div style="padding: 0px 0px 10px; font-size: 16px;">Картографические данные</div>
+                                <div style="font-size: 13px;">Картографические данные © 2015 GeoBasis-DE/BKG (©2009), Google, Inst. Geogr. Nacional, Mapa GISrael, ORION-ME</div>
+                                <div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                                </div>
+                            </div>
+                            <div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 281px; bottom: 0px; width: 547px;">
+                                <div draggable="false" class="gm-style-cc" style="-webkit-user-select: none;">
+                                    <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                        <div style="width: 1px;"></div>
+                                        <div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div>
+                                    </div>
+                                    <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">Картографические данные</a><span style="">Картографические данные © 2015 GeoBasis-DE/BKG (©2009), Google, Inst. Geogr. Nacional, Mapa GISrael, ORION-ME</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;">
+                                <div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Картографические данные © 2015 GeoBasis-DE/BKG (©2009), Google, Inst. Geogr. Nacional, Mapa GISrael, ORION-ME</div>
+                            </div>
+                            <div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; -webkit-user-select: none; position: absolute; right: 154px; bottom: 0px;">
+                                <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                    <div style="width: 1px;"></div>
+                                    <div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div>
+                                </div>
+                                <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right;"><a href="https://www.google.com/intl/ru_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Условия использования</a>
+                                </div>
+                            </div>
+                            <div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; position: absolute; right: 0px; bottom: 0px;">
+                                <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                                    <div style="width: 1px;"></div>
+                                    <div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div>
+                                </div>
+                                <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right;"><a target="_new" title="Сообщить об ошибке на карте или снимке" href="https://www.google.com/maps/@55.7518494,37.6171875,5z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Сообщить об ошибке на карте</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="leaflet-map-pane" style="left: -9px; top: -46px;">
+                        <div class="leaflet-tile-pane"></div>
+                        <div class="leaflet-objects-pane">
+                            <div class="leaflet-shadow-pane leaflet-zoom-hide"></div>
+                            <div class="leaflet-overlay-pane"></div>
+                            <div class="leaflet-marker-pane leaflet-zoom-hide"></div>
+                            <div class="leaflet-popup-pane leaflet-zoom-hide"></div>
+                        </div>
+                    </div>
+                    <div class="leaflet-control-container">
+                        <div class="leaflet-top leaflet-left">
+                            <div class="leaflet-control-zoom leaflet-bar leaflet-control"><a class="leaflet-control-zoom-in" href="#" title="Увеличить">+</a><a class="leaflet-control-zoom-bbox" href="#" title="Позиционирование на объектах карты"><i class="fa fa-home"></i></a><a class="leaflet-control-zoom-out" href="#" title="Уменьшить">-</a>
+                            </div>
+                            <div class="leaflet-control-permalink leaflet-bar leaflet-control"><a class="leaflet-control-permalink-link leaflet-disabled" href="#" title="Постоянная ссылка"><i class="fa fa-link"></i></a>
+                            </div>
+                            <div class="leaflet-control-geocoder leaflet-bar leaflet-control">
+                                <div class="leaflet-control-geocoder-icon"></div>
+                                <div class="leaflet-control-geocoder-div-form">
+                                    <form class="leaflet-control-geocoder-form">
+                                        <input class="undefined" type="text" placeholder="Поиск...">
+                                    </form>
+                                </div>
+                                <div class="leaflet-control-geocoder-form-no-error">Ничего не найдено</div>
+                                <ul class="leaflet-control-geocoder-alternatives leaflet-control-geocoder-alternatives-minimized"></ul>
+                            </div>
+                            <div class="leaflet-control-searchcoords leaflet-control">
+                                <div class="leaflet-bar leaflet-find-actions-visible">
+                                    <div class="leaflet-control-searchcoords-icon"></div>
+                                </div>
+                                <div class="leaflet-find-actions" style="width: 280px; display: block;">
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="input_lat">Широта</label>
+                                            <input class="form-control input-sm" id="input_lat" placeholder="Широта" ng-model="center">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="input_lon">Долгота</label>
+                                            <input class="form-control input-sm" id="input_lon" placeholder="Долгота" ng-model="center">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="btn btn-default btn-leaflet" id="search">Искать</div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="leaflet-draw leaflet-control">
+                                <div class="leaflet-draw-section">
+                                    <div class="leaflet-draw-toolbar leaflet-bar leaflet-draw-toolbar-top">
+                                        <a class="leaflet-draw-draw-polygon" href="#" title="Полигон"></a>
+                                        <a class="leaflet-draw-draw-rectangle" href="#" title="Прямоугольник"></a>
+                                    </div>
+                                    <ul class="leaflet-draw-actions"></ul>
+                                </div>
+                                <div class="leaflet-draw-section">
+                                    <div class="leaflet-draw-toolbar leaflet-bar">
+                                        <a class="leaflet-draw-edit-edit leaflet-disabled" href="#" title="Нет объектов для редактирования"></a>
+                                        <a class="leaflet-draw-edit-remove leaflet-disabled" href="#" title="Нет объектов для удаления"></a>
+                                    </div>
+                                    <ul class="leaflet-draw-actions">
+                                        <li class="remove_all"><a class="" href="#" title="Удалить все">Удалить все</a>
+                                        </li>
+                                        <li class="undefined"><a class="" href="#" title="Сохранить изменения">Сохранить</a>
+                                        </li>
+                                        <li class="undefined"><a class="" href="#" title="Отменить редактирование, отменяет все изменения">Отменить</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="leaflet-control-save leaflet-bar leaflet-control"><a class="leaflet-control-save-link active" href="#" title="Импорт геометрии"><i class="fa fa-upload"></i></a>
+                            </div>
+                        </div>
+                        <div class="leaflet-top leaflet-right">
+                            <div class="leaflet-control-layers leaflet-control" aria-haspopup="true">
+                                <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                                <form class="leaflet-control-layers-list">
+                                    <div class="leaflet-control-layers-base">
+                                        <label>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers"><span> Рельеф</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers"><span> Спутник</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers" checked="checked"><span> Схема</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers"><span> Гибрид</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" class="leaflet-control-layers-selector" name="leaflet-base-layers"><span> Openstreetmap</span>
+                                        </label>
+                                    </div>
+                                    <div class="leaflet-control-layers-separator"></div>
+                                    <div class="leaflet-control-layers-overlays">
+                                        <label>
+                                            <input type="checkbox" class="leaflet-control-layers-selector" checked=""><span> Область интереса</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="leaflet-control-layers-selector" checked=""><span> Результаты поиска</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="leaflet-control-layers-selector" checked=""><span> Избранное</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="leaflet-control-layers-selector" checked=""><span> Изображения (поиск)</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" class="leaflet-control-layers-selector" checked=""><span> Изображения (избранное)</span>
+                                        </label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="leaflet-bottom leaflet-left">
+                            <div class="leaflet-control-coordinates leaflet-control">
+                                <div class="uiElement label"><span class="labelFirst">Ш: 52.03 Д: 13.89</span>
+                                </div>
+                                <div class="uiElement input uiHidden"><span class="">Ш: </span>
+                                    <input class="inputY" type="text"><span class="">Д: </span>
+                                    <input class="inputX" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leaflet-bottom leaflet-right" style="margin-bottom: 1em;">
+                            <div class="leaflet-control-attribution leaflet-control"><a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <form class="search-form" action="/ajax/getfeature/">
+                    <input type="hidden" id="geom1" name="geom1" value="">
+                    <input type="hidden" id="geom" name="geom" value="">
+                    <input type="hidden" id="offset" name="offset" value="0">
+                    <input type="hidden" id="page" name="page" value="0">
+                    <input type="hidden" id="limit" name="limit" value="50">
+                    <input type="hidden" id="order_by" name="order_by" value="date">
+                    <div class="search-form__title"><span class="logo">Kazakhstan Gharysh Sapary</span> поиск спутниковых снимков.
+                    </div>
+                    <div class="search-form__action">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary btn-default btn-search" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" disabled="disabled">Поиск</button>
+                            <button type="button" class="btn btn-sm btn-primary btn-default btn-search-id" ng-click="sendPost()" data-toggle="modal" data-target="#modal-search-by-id">Поиск по ID ...</button>
+                        </div>
+                    </div>
+                    <div class="search-form__content">
+                        <div class="error hidden">
+                            <div class="alert alert-warning alert-simple well-sm"></div>
+                        </div>
+                        <div class="search-form__content_inner">
+                            <div id="satellite" class="satellite">
+                                <fieldset>
+                                    <legend>Спутники</legend>
+                                    <div class="col1 col">
+
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="sensor" value="2" class="satellite-color satellite-color2">KazEOSat-1</label>
+                                        </div>
+
+
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="sensor" value="1" class="satellite-color satellite-color1">KazEOSat-2</label>
+                                        </div>
+
+                                    </div>
+
+                                </fieldset>
+
+
+                            </div>
+                        <!--<div id="cloud">
+                            <fieldset>
+                                <legend>Облачность</legend>
+                                <div class="section">
+                                        <div class="input-group input-group-sm cloudiness-input hide">
+                                            <span class="input-group-addon"><i class="fa fa-cloud"></i></span>
+                                            <input class="form-control fld-value-slider form-control__addon form-control__cloud_gte" name="cloud__gte" value="0" type="text">
+                                            <input class="form-control fld-value-slider form-control__addon form-control__cloud_lte" name="cloud__lte" value="20" type="text">
+                                        </div>
+                                        <div class="wrapper-slider">
+                                            <label>
+                                                <input class="slider" type="slider" value="0;20" style="display: none;"><span class="jslider jslider_round_plastic"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="f"></i><i class="r"></i><i class="v" style="left: 0%; width: 20%;"></i></div><div class="jslider-pointer" style="left: 0%;"></div><div class="jslider-pointer jslider-pointer-to" style="left: 20%;"></div><div class="jslider-label" style="display: none;"><span>0</span>
+                                        </div>
+                                        <div class="jslider-label jslider-label-to"><span>100</span>%</div>
+                                        <div class="jslider-value" style="left: 0%; margin-left: 0px; right: auto; visibility: visible;"><span>0</span>%</div>
+                                        <div class="jslider-value jslider-value-to" style="visibility: visible; left: 20%; margin-left: -14.5px; right: auto;"><span>20</span>%</div>
+                                        <div class="jslider-scale"></div>
+                                        </td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                        </span>
+                                        </label>
+                                    </div>
+								</div>
+                            </fieldset>
+                        </div>-->
+                        <!-- <div id="angle">
+                            <fieldset>
+                                <legend>Угол отклонения</legend>
+                                <div class="section">
+                                    <div class="input-group input-group-sm cloudiness-input hide">
+                                        <span class="input-group-addon"><i class="fa fa-cloud"></i></span>
+                                        <input class="form-control fld-value-slider form-control__addon form-control_angle__gte" name="angle__gte" value="0" type="text">
+                                        <input class="form-control fld-value-slider form-control__addon form-control_angle__lte" name="angle__lte" value="10" type="text">
+                                    </div>
+                                    <div class="wrapper-slider">
+                                        <label>
+                                            <input class="slider" type="slider" value="0;10" style="display: none;"><span class="jslider jslider_round_plastic"><table><tbody><tr><td><div class="jslider-bg"><i class="l"></i><i class="f"></i><i class="r"></i><i class="v" style="left: 0%; width: 22.2%;"></i></div><div class="jslider-pointer" style="left: 0%;"></div><div class="jslider-pointer jslider-pointer-to" style="left: 22.2%;"></div><div class="jslider-label" style="display: none;"><span>0</span>
+                                    </div>
+                                    <div class="jslider-label jslider-label-to"><span>45</span>°</div>
+                                    <div class="jslider-value" style="left: 0%; margin-left: 0px; right: auto; visibility: visible;"><span>0</span>°</div>
+                                    <div class="jslider-value jslider-value-to" style="visibility: visible; left: 22.2%; margin-left: -11.5px; right: auto;"><span>10</span>°</div>
+                                    <div class="jslider-scale"></div>
+                                    </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    </span>
+                                    </label>
+									</div>
+								</div>
+							</fieldset>
+						</div> -->
+                    <div id="date">
+                        <fieldset>
+                            <legend>Даты</legend>
+
+                            <label for="from" class="label__inline">с</label>
+                            <div class="input-group input-group-sm input-group__inline">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control form-control__date datepicker-from" name="fromdate" value="08.09.2010">
+                            </div>
+                            <label for="to" class="label__inline">по</label>
+                            <div class="input-group input-group-sm input-group__inline">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control form-control__date datepicker-to" name="todate" value="08.09.2015">
+                            </div>
+
+                            <div class="panel-group" id="sub-accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+			<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#sub-accordion" href="#seasonally">Сезонность</a>
+		  </h4>
+                                    </div>
+                                    <div id="seasonally" class="panel-collapse collapse" style="height: 0px;">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="1" name="month" checked="checked" type="checkbox">Январь</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="2" name="month" checked="checked" type="checkbox">Февраль</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="3" name="month" checked="checked" type="checkbox">Март</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="4" name="month" checked="checked" type="checkbox">Апрель</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="5" name="month" checked="checked" type="checkbox">Май</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="6" name="month" checked="checked" type="checkbox">Июнь</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="7" name="month" checked="checked" type="checkbox">Июль</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="8" name="month" checked="checked" type="checkbox">Август</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="9" name="month" checked="checked" type="checkbox">Сентябрь</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="10" name="month" checked="checked" type="checkbox">Октябрь</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="11" name="month" checked="checked" type="checkbox">Ноябрь</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input value="12" name="month" checked="checked" type="checkbox">Декабрь</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="text" ng-model='latFirst' value='50'>
+                            <input type="text" ng-model='latSecond' value='70'>
+                            <input type="text" ng-model='latThird' value='51'>
+                            <input type="text" ng-model='latFourth' value='71'>
+                            <div ng-if="imagesNumber">
+                                <h2>Найдено {{imagesNumber}} снимков</h2>
+                            </div>
+                        </fieldset>
+                    </div>
+            </div>
+        </div>
+        </form>
+        </div>
+        <div class="messages" id="messages"></div>
+        <div class="info">
+            <ul class="nav nav-tabs nav-tabs__dark">
+                <li class="active"><a href="#result_search" id="result_search_tab" data-toggle="tab" data-show="search" data-hide="favorite">Результаты поиска</a>
+                    <div class="action">
+                        <button id="export_shp_search" class="btn btn-sm btn-default disabled" disabled="disabled" data-text="<i class='fa fa-download'></i> Экспорт (*.shp)"><i class="fa fa-download"></i> Экспорт (*.shp)</button>
+                        <button id="download_ql_search" class="btn btn-sm btn-default disabled" disabled="disabled" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Скачать изображения" data-text="<i class='fa fa-download'></i> Скачать изображения"><i class="fa fa-download"></i> Скачать квиклуки</button>
+                    </div>
+                </li>
+                <li><a href="#favorites" id="favorites_tab" data-toggle="tab" data-show="favorite" data-hide="search">Избранное</a>
+                    <div class="action">
+                        <button id="export_shp_favorite" class="btn btn-sm btn-default disabled" disabled="disabled" data-text="<i class='fa fa-download'></i> Экспорт (*.shp)"><i class="fa fa-download"></i> Экспорт (*.shp)</button>
+                        <button id="download_ql_favorite" class="btn btn-sm btn-default disabled" disabled="disabled" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Скачать изображения" data-text="<i class='fa fa-download'></i> Скачать изображения"><i class="fa fa-download"></i> Скачать квиклуки</button>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div ng-if="!images" class="tab-pane fade in active result_search" id="result_search">
+                    <div class="fixed-table-container">
+                        <div class="text-center">Тут будут отображаться спутниковые снимки.</div>
+                    </div>
+                </div>
+                <div ng-if="!images" class="tab-pane fade favorites" id="favorites">
+                    <div class="fixed-table-container">
+
+                        <div class="text-center">Тут будут отображаться спутниковые снимки.</div>
+
+                    </div>
+                </div>
+				<div ng-if="images" ng-repeat="image in images">
+					<a href="{{image.qlUrl}}" target="_blank">{{image.name}}</a>
+				</div>
+            </div>
+        </div>
+        </div>
+        <div class="modal fade" id="modal-load-geometry" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">?</button>
+                        <h4 class="modal-title" id="myModalLabel">Импорт геометрии</h4>
+                    </div>
+                    <ul class="nav nav-tabs nav-tabs__light ">
+                        <li class="active">
+                            <a href="#shp" data-toggle="tab">Из файла</a>
+                        </li>
+                        <li>
+                            <a href="#wkt" data-toggle="tab">Текстовый</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="shp">
+                            <div class="modal-body">
+                                <p>Вы можете загрузить файлы в формате kml, gml, а так же ZIP-архив содержащий файлы следующих форматов: shp, tab, kml, gml. Файлы должны содержать
+                                    <b>только</b> полигональные объекты в проекции WGS-84 (EPSG:4326)</p>
+                                <div class="alert well-sm fade"></div>
+                            </div>
+                            <form action="/ajax/shapetogeojson" method="POST" class="fileupload text-right" enctype="multipart/form-data">
+                                <div class="modal-footer"><span class="btn btn-sm btn-primary btn-file" data-loading-text="<i class='fa fa-refresh fa-spin'></i>">Загрузить
+		<input class="form-control__file" type="file" name="file"></span>
+                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Закрыть</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="wkt">
+                            <div class="modal-body">
+                                <textarea class="form-control form-control__wkt" name="wkt" placeholder="Геометрия в формате WKT или geoJSON. Система координат EPSG:4326 (Широта/Долгота)."></textarea>
+                                <div class="alert well-sm fade"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-primary btn-send-text" data-loading-text="<i class='fa fa-refresh fa-spin'></i>">Загрузить</button>
+                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-search-by-id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">?</button>
+                        <h4 class="modal-title" id="myModalLabel">Поиск по идентификатору снимка</h4><span class="help-block">Введите id снимка или список id через запятую</span>
+                    </div>
+                    <div class="modal-body">
+                        <textarea name="search" class="form-control fld-search-by-id"></textarea>
+                        <div class="alert well-sm fade"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-primary btn-search-by-id" data-loading-text="<i class='fa fa-refresh fa-spin'></i>">Поиск</button>
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-permalink" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">?</button>
+                        <h4 class="modal-title" id="myModalLabel">Постоянная ссылка</h4>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+		<script src="./js/jquery-2.1.4.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script type="text/javascript" src="./js/bootstrap-datepicker.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./js/bootstrap-datepicker.ru.js" charset="utf-8"></script>
+        <script src="./js/script.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+</body>
+
+</html>
