@@ -1,3 +1,23 @@
+/*datepicker begin*/
+$(document).ready(function() {  
+	
+	$.datepicker.regional["ru"] = {
+		closeText: 'Готово', // set a close button text
+    		currentText: 'Сегодня', // set today text
+    		monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',   'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'], // set month names
+  	        monthNamesShort: ['Янв','Фев','Март','Апр','Май','Июнь','Июль','Авг','Сен','Окт','Ноя','Дек'], // set short month names
+ 		dayNames: ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'], // set days names
+    		dayNamesShort: ['Вос','Пон','Вт','Ср','Чет','Пят','Суб'], // set short day names
+    		dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], // set more short days names
+    		dateFormat: 'dd/mm/yy', // set format date
+    		nextText: "Следующий",
+    		prevText: "Предыдущий"
+	}  
+	$.datepicker.setDefaults($.datepicker.regional["ru"]); 
+	//$.datepicker.setDefaults($.extend($.datepicker.regional["ru"]));
+  	$('.datepickInput').datepicker();		
+});
+/*end*/
 
 var map;
 function initMap() {
@@ -6,6 +26,56 @@ function initMap() {
     zoom: 5
   });
 };
+
+/* Abyl begin*/
+function date2code(secs,f) {
+	const a = 1350000;
+	var b;
+	if (f=='A')
+		b = 1012500;
+	else 
+		b = 2362499;
+	var y = (secs/1000/3600-18)/24;
+	var x = a*y+b;
+	var binXStr = x.toString(2);
+	var mask = 0x0000003f;
+	var code = '';
+	var c;
+	while(binXStr.length % 6 != 0)
+		binXStr = '0'+binXStr;
+	y = parseInt(binXStr.slice(0,6),2);
+	x = parseInt(binXStr.slice(6),2);
+	for(var i=0;i<5;i++){
+		var k = x & mask;
+		if(k<26) 
+			c = String.fromCharCode('A'.charCodeAt(0)+k);
+		else if (k<52)
+			c = String.fromCharCode('a'.charCodeAt(0)+(k-26));
+		else if (k<62)
+			c = String.fromCharCode('0'.charCodeAt(0)+(k-52));
+		else if (k==62)
+			c = '$';
+		else //if k==63 
+			c = '_';
+		code = c + code;
+		x=x>>6;
+	}
+	if(y<26) 
+		c = String.fromCharCode('A'.charCodeAt(0)+y);
+	else if (y<52)
+		c = String.fromCharCode('a'.charCodeAt(0)+(y-26));
+	else if (y<62)
+		c = String.fromCharCode('0'.charCodeAt(0)+(y-52));
+	else if (y==62)
+		c = '$';
+	else //if k==63 
+		c = '_';
+	code = c + code + f;
+
+	//k >> 30;
+	return code;
+};
+/*end*/
 
 function centerPoly(A,B){
    return [(A[0]+B[0])/2,(A[1]+B[1])/2];
@@ -41,7 +111,14 @@ function ($scope, $http, transformRequestAsFormPost){
 	
 	$scope.data = '';
     $scope.sendPost = function() {
-		
+		/* Date Coder begin*/
+		//var startDate = $scope.startDate;
+		var startCode = date2code(Date.parse($scope.startDate.toString()),'A');
+		//var endDate = $scope.endDate;
+		var endCode = date2code(Date.parse($scope.endDate.toString()),'_');
+		/* $scope.latFirst = startCode;
+		$scope.latSecond = endCode; */
+		/*end */
 		var coords = {
 				"top": $scope.latFirst,
 				"right":$scope.latSecond,
