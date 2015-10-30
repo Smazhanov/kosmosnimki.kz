@@ -133,7 +133,9 @@ function ($scope, $http, transformRequestAsFormPost){
 				top: coords.top, 
 				right: coords.right, 
 				bottom: coords.bottom, 
-				left: coords.left 
+				left: coords.left,
+				startDate: startCode,
+				endDate: endCode
 			}).done(function( data ){
 				$scope.data = data;
 				
