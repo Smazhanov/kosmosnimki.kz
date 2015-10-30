@@ -372,7 +372,9 @@
                     <div id="date">
                         <fieldset>
                             <legend>Даты</legend>
-
+							<input type="checkbox" ng-model='allPeriod'> За весь период
+							<div ng-hide="allPeriod">
+							<br>
                              <label for="from" class="label__inline">с</label>
 							<!--div class="inline"-->
 								<input class="datepickInput" ng-model="startDate" style="width: 100px;" type="text"/>	
@@ -381,74 +383,8 @@
 							<!--div class="inline"-->
 								<input class="datepickInput" ng-model="endDate" style="width: 100px;" type="text" />
 							<!--/div-->	
-
-                            <div class="panel-group" id="sub-accordion">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-			<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#sub-accordion" href="#seasonally">Сезонность</a>
-		  </h4>
-                                    </div>
-                                    <div id="seasonally" class="panel-collapse collapse" style="height: 0px;">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="1" name="month" checked="checked" type="checkbox">Январь</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="2" name="month" checked="checked" type="checkbox">Февраль</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="3" name="month" checked="checked" type="checkbox">Март</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="4" name="month" checked="checked" type="checkbox">Апрель</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="5" name="month" checked="checked" type="checkbox">Май</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="6" name="month" checked="checked" type="checkbox">Июнь</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="7" name="month" checked="checked" type="checkbox">Июль</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="8" name="month" checked="checked" type="checkbox">Август</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="9" name="month" checked="checked" type="checkbox">Сентябрь</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="10" name="month" checked="checked" type="checkbox">Октябрь</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="11" name="month" checked="checked" type="checkbox">Ноябрь</label>
-                                                    </div>
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input value="12" name="month" checked="checked" type="checkbox">Декабрь</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+							</div>
+							
                             <input type="text" ng-model='latFirst' value='50'>
                             <input type="text" ng-model='latSecond' value='70'>
                             <input type="text" ng-model='latThird' value='51'>

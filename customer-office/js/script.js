@@ -110,32 +110,39 @@ function ($scope, $http, transformRequestAsFormPost){
 	
 	
 	$scope.data = '';
+	$scope.allPeriod = false;
     $scope.sendPost = function() {
 		/* Date Coder begin*/
-		//var startDate = $scope.startDate;
-		var startCode = date2code(Date.parse($scope.startDate.toString()),'A');
-		//var endDate = $scope.endDate;
-		var endCode = date2code(Date.parse($scope.endDate.toString()),'_');
+		if (!$scope.allPeriod) {
+			var startCode = date2code(Date.parse($scope.startDate.toString()),'A');
+			var endCode = date2code(Date.parse($scope.endDate.toString()),'_');
+		}
 		/* $scope.latFirst = startCode;
 		$scope.latSecond = endCode; */
 		/*end */
+	
 		var coords = {
 				"top": $scope.latFirst,
 				"right":$scope.latSecond,
 				"bottom" :$scope.latThird,
 				"left": $scope.latFourth,
+				"allPeriod": $scope.allPeriod
 			};
-			
+		var postUrl = '';
+		if ( $scope.allPeriod === false){
+			postUrl = "../customer-office/proxy.php";
+		} else { postUrl = "../customer-office/proxy-nodate.php"};
+		
 		$.post( 
-			//"../customer-office/proxy.php",
-			"../customer-office/proxy.php",
+			postUrl,
 			{ 
 				top: coords.top, 
 				right: coords.right, 
 				bottom: coords.bottom, 
 				left: coords.left,
 				startDate: startCode,
-				endDate: endCode
+				endDate: endCode,
+				allPeriod: coords.allPeriod
 			}).done(function( data ){
 				$scope.data = data;
 				
