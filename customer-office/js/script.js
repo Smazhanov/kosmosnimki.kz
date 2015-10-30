@@ -1,5 +1,4 @@
 
-
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -17,17 +16,17 @@ function distance(A,B){
 }
 
 function footprintEdges(footprint){
-	var west = footprint[0][0];
-	var east = footprint[0][0];
-	var south = footprint[0][1];
-	var north = footprint[0][1];
+	var west = footprint[0];
+	var east = footprint[0];
+	var south = footprint[0];
+	var north = footprint[0];
 	for(i = 0; i < footprint.length; i++){
-		if ( west > footprint[i][0]) west = footprint[i][0];
-		if ( east < footprint[i][0]) east = footprint[i][0];
-		if ( south > footprint[i][1]) south = footprint[i][1];
-		if ( north < footprint[i][1]) north = footprint[i][1];
+		if ( west[0] > footprint[i][0]) west = footprint[i];
+		if ( east[0] < footprint[i][0]) east = footprint[i];
+		if ( south[1] > footprint[i][1]) south = footprint[i];
+		if ( north[1] < footprint[i][1]) north = footprint[i];
 	}
-	return [[north,west],[north,east],[south,east],[south,west]];
+	return [west,north,east,south];
 }
 
 var imagePolygon = [];
@@ -51,7 +50,8 @@ function ($scope, $http, transformRequestAsFormPost){
 			};
 			
 		$.post( 
-			"http://5flats.kz/gharysh/customer-office/proxy.php",
+			//"../customer-office/proxy.php",
+			"../customer-office/proxy.php",
 			{ 
 				top: coords.top, 
 				right: coords.right, 
@@ -68,6 +68,7 @@ function ($scope, $http, transformRequestAsFormPost){
 				var image = {
 						name: '',
 						qlUrl: '',
+						resolution:'',
 						footprint: []
 					};
 				var indexStartUsefulInfo = $scope.data.lastIndexOf('net.eads.astrium.faceo.core.apis.catalogue.CatalogueSetRecordResponse/2366861634');
@@ -79,23 +80,25 @@ function ($scope, $http, transformRequestAsFormPost){
 				arrGmd = arr[1].split('<gmd:');
 				n = arrGmd.length;
 					if (arrGmd[2].split('CharacterString')[1].slice(1,5) === "KM00") { 
+							image.resolution = 'MR';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,19);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 13].slice(1,64);
 							m = arrGmd[72].split('gco:CharacterString>')[1].length;
 							temp = arrGmd[72].split('gco:CharacterString>')[1].slice(0, m-3).split(' ');
 							for (j = 0; j < temp.length/2; j++){
-								image.footprint.push([parseFloat(temp[2*j]),parseFloat(temp[2*j+1])]);
+								image.footprint.push([parseFloat(temp[2*j+1]),parseFloat(temp[2*j])]);
 							}
 						}
 					if (arrGmd[2].split('CharacterString')[1].slice(1,9) === "DS_DZHR1") {
+							image.resolution = 'HR';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,44);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 3].slice(1,89);
 							m = arrGmd[77].split('gco:CharacterString>')[1].length;
 							temp = arrGmd[77].split('gco:CharacterString>')[1].slice(0, m-3).split(' ');
 							for (j = 0; j < temp.length/2; j++){
-								image.footprint.push([parseFloat(temp[2*j]),parseFloat(temp[2*j+1])]);
+								image.footprint.push([parseFloat(temp[2*j+1]),parseFloat(temp[2*j])]);
 							}
 						}
 					if (arrGmd[2].split('CharacterString')[1].slice(1,6) === "ORTHO") {
@@ -118,6 +121,7 @@ function ($scope, $http, transformRequestAsFormPost){
 						var image = {
 							name: '',
 							qlUrl: '',
+							resolution:'',
 							footprint: []
 						};
 					};
@@ -128,23 +132,25 @@ function ($scope, $http, transformRequestAsFormPost){
 					arrGmd = arr[i].split('<gmd:');
 					n = arrGmd.length;
 					if (arrGmd[2].split('CharacterString')[1].slice(1,5) === "KM00") { 
+							image.resolution = 'MR';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,19);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 3].slice(1,64);
 							m = arrGmd[72].split('gco:CharacterString>')[1].length;
 							temp = arrGmd[72].split('gco:CharacterString>')[1].slice(0, m-3).split(' ');
 							for (j = 0; j < temp.length/2; j++){
-								image.footprint.push([parseFloat(temp[2*j]),parseFloat(temp[2*j+1])]);
+								image.footprint.push([parseFloat(temp[2*j+1]),parseFloat(temp[2*j])]);
 							}
 						}
 					if (arrGmd[2].split('CharacterString')[1].slice(1,9) === "DS_DZHR1") {
+							image.resolution = 'HR';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,44);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 3].slice(1,89);
 							m = arrGmd[77].split('gco:CharacterString>')[1].length;
 							temp = arrGmd[77].split('gco:CharacterString>')[1].slice(0, m-3).split(' ');
 							for (j = 0; j < temp.length/2; j++){
-								image.footprint.push([parseFloat(temp[2*j]),parseFloat(temp[2*j+1])]);
+								image.footprint.push([parseFloat(temp[2*j+1]),parseFloat(temp[2*j])]);
 							}
 						}
 					if (arrGmd[2].split('CharacterString')[1].slice(1,6) === "ORTHO") {
@@ -168,6 +174,7 @@ function ($scope, $http, transformRequestAsFormPost){
 						var image = {
 							name: '',
 							qlUrl: '',
+							resolution:'',
 							footprint: []
 						};
 					};
@@ -178,23 +185,25 @@ function ($scope, $http, transformRequestAsFormPost){
 				arrGmd = arr[arr.length-1].split('<gmd:');
 				n = arrGmd.length;
 					if (arrGmd[2].split('CharacterString')[1].slice(1,5) === "KM00") { 
+							image.resolution = 'MR';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,19);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 2].slice(1,64);
 							m = arrGmd[72].split('gco:CharacterString>')[1].length;
 							temp = arrGmd[72].split('gco:CharacterString>')[1].slice(0, m-3).split(' ');
 							for (j = 0; j < temp.length/2; j++){
-								image.footprint.push([parseFloat(temp[2*j]),parseFloat(temp[2*j+1])]);
+								image.footprint.push([parseFloat(temp[2*j+1]),parseFloat(temp[2*j])]);
 							}
 						}
 					if (arrGmd[2].split('CharacterString')[1].slice(1,9) === "DS_DZHR1") {
+							image.resolution = 'HR';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,44);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 3].slice(1,89);
 							m = arrGmd[77].split('gco:CharacterString>')[1].length;
 							temp = arrGmd[77].split('gco:CharacterString>')[1].slice(0, m-3).split(' ');
 							for (j = 0; j < temp.length/2; j++){
-								image.footprint.push([parseFloat(temp[2*j]),parseFloat(temp[2*j+1])]);
+								image.footprint.push([parseFloat(temp[2*j+1]),parseFloat(temp[2*j])]);
 							}
 						}
 					if (arrGmd[2].split('CharacterString')[1].slice(1,6) === "ORTHO") {
@@ -202,6 +211,7 @@ function ($scope, $http, transformRequestAsFormPost){
 							var eastLong = 0;
 							var southLat = 0;
 							var northLat = 0;
+							image.resolution = 'ORTHO';
 							image.name = arrGmd[2].split('CharacterString')[1].slice(1,24);
 							temp = arrGmd[n-1].split(',');
 							image.qlUrl = temp[temp.length - 4].slice(1,69);
@@ -217,6 +227,7 @@ function ($scope, $http, transformRequestAsFormPost){
 						var image = {
 							name: '',
 							qlUrl: '',
+							resolution:'',
 							footprint: []
 						};
 					};
@@ -234,8 +245,8 @@ function ($scope, $http, transformRequestAsFormPost){
 					var coord = {};
 					for(j = 0; j < images[i].footprint.length; j++){
 						coord = {
-							lat: images[i].footprint[j][1],
-							lng: images[i].footprint[j][0]
+							lat: images[i].footprint[j][0],
+							lng: images[i].footprint[j][1]
 						}
 						polygonCoords.push(coord);
 					}
@@ -257,29 +268,26 @@ function ($scope, $http, transformRequestAsFormPost){
 					  var centerNorth = centerPoly(footprintEdges(images[j].footprint)[0],footprintEdges(images[j].footprint)[1]); //Находим центр верхнего края
 					  var centerWest = centerPoly(footprintEdges(images[j].footprint)[0],footprintEdges(images[j].footprint)[3]); //Находим центр левого края
 					  
+					  if (images[j].resolution === 'MR')
 					  var imageBounds = {
 						  north: centerFootprint[0] + distance(centerFootprint,centerNorth),
 						  south: centerFootprint[0] - distance(centerFootprint,centerNorth),
 						  east: centerFootprint[1] + distance(centerFootprint,centerWest),
 						  west: centerFootprint[1] - distance(centerFootprint,centerWest)
 					  };
-					
-					marker[j] = [];
 					  
-					  marker[j][0] = new google.maps.Marker({
-						position: {lat: footprintEdges(images[j].footprint)[0][0],lng: footprintEdges(images[j].footprint)[0][1]},
-						map: map
-					  });
+					  if (images[j].resolution === 'HR')
+					  var imageBounds = {
+						  north: centerFootprint[0] + distance(centerFootprint,centerWest),
+						  south: centerFootprint[0] - distance(centerFootprint,centerWest),
+						  east: centerFootprint[1] + distance(centerFootprint,centerNorth),
+						  west: centerFootprint[1] - distance(centerFootprint,centerNorth)
+					  };
 					  
-					  marker[j][1] = new google.maps.Marker({
-						position: {lat: footprintEdges(images[j].footprint)[1][0],lng: footprintEdges(images[j].footprint)[1][1]},
-						map: map
-					  });
-					  
-					  //overlayQuicklook = new google.maps.GroundOverlay(
-					//	  'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
-					//	  imageBounds);
-					//  overlayQuicklook.setMap(map);
+					  /*overlayQuicklook = new google.maps.GroundOverlay(
+						  images[j].qlUrl,
+						  imageBounds);
+					  overlayQuicklook.setMap(map);*/
 				}
 				
 				$scope.$apply();
