@@ -1,6 +1,10 @@
 /*datepicker begin*/
+
 $(document).ready(function() {  
 	
+=======
+$(document).ready(function() {  	
+
 	$.datepicker.regional["ru"] = {
 		closeText: 'Готово', // set a close button text
     		currentText: 'Сегодня', // set today text
@@ -77,6 +81,7 @@ function date2code(secs,f) {
 };
 /*end*/
 
+<<<<<<< HEAD
 function centerPoly(A,B){
    return [(A[0]+B[0])/2,(A[1]+B[1])/2];
 }
@@ -99,6 +104,8 @@ function footprintEdges(footprint){
 	return [west,north,east,south];
 }
 
+=======
+>>>>>>> 7e6b61d0df42c578d6c532ba1b51cc4b766ca0f8
 var imagePolygon = [];
 
 var app = angular.module('myApp', []);
@@ -111,6 +118,16 @@ function ($scope, $http, transformRequestAsFormPost){
 	
 	$scope.data = '';
 	$scope.allPeriod = false;
+<<<<<<< HEAD
+=======
+	$scope.latFirst = 50.2;
+	$scope.latSecond = 50.3;
+	$scope.latThird = 50.4;
+	$scope.latFourth = 50.5;
+	$scope.startDate = "01/01/2015";
+	$scope.endDate = "08/07/2015";
+	
+>>>>>>> 7e6b61d0df42c578d6c532ba1b51cc4b766ca0f8
     $scope.sendPost = function() {
 		/* Date Coder begin*/
 		if (!$scope.allPeriod) {
@@ -337,6 +354,7 @@ function ($scope, $http, transformRequestAsFormPost){
 						polygonCoords.push(coord);
 					}
 					
+<<<<<<< HEAD
 					imagePolygon[i] = new google.maps.Polygon({
 						paths: polygonCoords,
 						strokeColor: '#43ac38',
@@ -350,6 +368,14 @@ function ($scope, $http, transformRequestAsFormPost){
 				/* end */
 				var marker = [];
 				for(j = 0; j < images.length; j++){
+=======
+					polygonCreate(imagePolygon[i], polygonCoords);
+					addListenersOnPolygon(imagePolygon[i],i);
+				}
+				/* end */
+				var marker = [];
+				for(j = 0; j < 10; j++){
+>>>>>>> 7e6b61d0df42c578d6c532ba1b51cc4b766ca0f8
 					  var centerFootprint = centerPoly(footprintEdges(images[j].footprint)[0],footprintEdges(images[j].footprint)[2]); //Находим центр футпринта
 					  var centerNorth = centerPoly(footprintEdges(images[j].footprint)[0],footprintEdges(images[j].footprint)[1]); //Находим центр верхнего края
 					  var centerWest = centerPoly(footprintEdges(images[j].footprint)[0],footprintEdges(images[j].footprint)[3]); //Находим центр левого края
@@ -370,10 +396,40 @@ function ($scope, $http, transformRequestAsFormPost){
 						  west: centerFootprint[1] - distance(centerFootprint,centerNorth)
 					  };
 					  
+<<<<<<< HEAD
 					  /*overlayQuicklook = new google.maps.GroundOverlay(
 						  images[j].qlUrl,
 						  imageBounds);
 					  overlayQuicklook.setMap(map);*/
+=======
+					  $.post(
+					   "../customer-office/imagerotate.php",
+					   {
+						   qlUrl: images[j].qlUrl,
+						   name: images[j].name,
+						   north: imageBounds.north,
+						   south: imageBounds.south,
+						   east: imageBounds.east,
+						   west: imageBounds.west
+					   }
+					  ).done(function(data){
+						  var temp;
+						  images[j].qlUrl = data[0];
+						  var bounds = {
+							  north: parseFloat(data[1]),
+							  south: parseFloat(data[2]),
+							  east: parseFloat(data[3]),
+							  west: parseFloat(data[4])
+						  }
+						  
+						  overlayQuicklook = new google.maps.GroundOverlay(
+							  images[j].qlUrl,
+							  bounds);
+						  overlayQuicklook.setMap(map);
+					  });
+					  
+					  
+>>>>>>> 7e6b61d0df42c578d6c532ba1b51cc4b766ca0f8
 				}
 				
 				$scope.$apply();
@@ -382,3 +438,55 @@ function ($scope, $http, transformRequestAsFormPost){
 		
     }                   
 }]);
+<<<<<<< HEAD
+=======
+
+function polygonCreate(polygon, coordinates){
+	imagePolygon[i] = new google.maps.Polygon({
+		paths: coordinates,
+		strokeColor: '#9933FF',
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: '#9933FF',
+		fillOpacity: 0.1
+	});
+	imagePolygon[i].setMap(map);
+};
+
+var addListenersOnPolygon = function(polygon, ind) {
+	//listeners
+  google.maps.event.addListener(polygon, 'click', function (event) {
+    console.log("You clicked footprint!");
+  });
+
+  google.maps.event.addListener(polygon, 'mouseover', function (event) {
+    polygon.setOptions({strokeWeight:4, fillOpacity:0.5, strokeColor: '#00CC66', fillColor: '#00CC66'});
+  });
+  
+  google.maps.event.addListener(polygon, 'mouseout', function (event) {
+    polygon.setOptions({strokeWeight:2, fillOpacity:0.1, strokeColor: '#9933FF', fillColor: '#9933FF'});
+  });
+}
+
+function centerPoly(A,B){
+   return [(A[0]+B[0])/2,(A[1]+B[1])/2];
+}
+
+function distance(A,B){
+	return Math.sqrt((A[0]-B[0])*(A[0]-B[0]) +  (A[1]-B[1])*(A[1]-B[1]));
+}
+
+function footprintEdges(footprint){
+	var west = footprint[0];
+	var east = footprint[0];
+	var south = footprint[0];
+	var north = footprint[0];
+	for(i = 0; i < footprint.length; i++){
+		if ( west[0] > footprint[i][0]) west = footprint[i];
+		if ( east[0] < footprint[i][0]) east = footprint[i];
+		if ( south[1] > footprint[i][1]) south = footprint[i];
+		if ( north[1] < footprint[i][1]) north = footprint[i];
+	}
+	return [west,north,east,south];
+}
+
