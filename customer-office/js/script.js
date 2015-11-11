@@ -383,6 +383,10 @@ function ($scope, $http, transformRequestAsFormPost){
     }                   
 }]);
 
+function countArea(polygon){
+	return Math.floor(google.maps.geometry.spherical.computeArea(polygon.getPath()) / 1000000);
+}
+
 function polygonCreate(polygon, coordinates){
 	imagePolygon[i] = new google.maps.Polygon({
 		paths: coordinates,
@@ -392,6 +396,9 @@ function polygonCreate(polygon, coordinates){
 		fillColor: '#9933FF',
 		fillOpacity: 0.1
 	});
+	var zindex = Math.floor((350000- countArea(imagePolygon[i])) / 1000 );
+	console.log(zindex);
+	imagePolygon[i].setOptions({zIndex: zindex });
 	imagePolygon[i].setMap(map);
 };
 
