@@ -33,10 +33,10 @@ function ephem2xyz($ephems,$t,&$I){
 }
 
 function cart2geo($cart){
-    $D = sqrt($cart['x']*$cart['x']+$cart['y']*$cart['y']);
+    $D = hypot($cart['x'],$cart['y']);
     $r = sqrt($cart['z']*$cart['z']+(1-e1)*($cart['x']*$cart['x']+$cart['y']*$cart['y']));
     $B = atan($cart['z']*($r*$r*$r+b*e2*$cart['z']*$cart['z'])/$D/($r*$r*$r-b*e1*(1-e1)*$D*$D)); //formula Bouringa
-    $geo['lon'] = rad2deg(atan($cart['y']/$cart['x']));
+    $geo['lon'] = rad2deg(atan2($cart['y'],$cart['x']));
     $geo['h'] = $D/cos($B)-a/sqrt(1-e1*sin($B)*sin($B));
     $geo['lat'] = rad2deg($B);
     return $geo;
@@ -54,7 +54,7 @@ function angDist($a,$b){
 function angAng($a,$b){
     $phi = deg2rad($b['lat']-$a['lat']);
     $lam = deg2rad($b['lon']-$a['lon']);
-    $aA = atan(sin($phi)/sin($lam));
+    $aA = atan2(sin($phi),sin($lam));
     echo "AA = ".rad2deg($aA)."\n";
     return $aA;
 }
