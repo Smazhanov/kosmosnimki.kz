@@ -17,7 +17,8 @@
 			{
 			    echo 'Ошибка curl: ' . curl_error($ch);
 			}
-			// phpinfo();
+			//phpinfo();
 			curl_close($ch);
 		}
+		phpinfo();
  ?>
