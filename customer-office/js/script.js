@@ -345,6 +345,7 @@ function ($scope, $http, transformRequestAsFormPost){
 						};
 						polygonCoords.push(coord);
 					}
+<<<<<<< HEAD
 
 					imagePolygon[i] = new google.maps.Polygon({
 						paths: polygonCoords,
@@ -419,6 +420,13 @@ function ($scope, $http, transformRequestAsFormPost){
 					  
 
 				}
+=======
+					
+					polygonCreate(imagePolygon[i], polygonCoords, images[i].name, images[i].qlUrl, images[i].footprint, images[i].resolution);
+					addListenersOnPolygon(imagePolygon[i],i);
+				}
+				/* end */
+>>>>>>> 0ba817688b1048ca276a8f7d5794d7347c4bf53d
 				
 				$scope.$apply();
 				
@@ -427,23 +435,83 @@ function ($scope, $http, transformRequestAsFormPost){
     }                   
 }]);
 
+<<<<<<< HEAD
 
 function polygonCreate(polygon, coordinates){
+=======
+function countArea(polygon){
+	return Math.floor(google.maps.geometry.spherical.computeArea(polygon.getPath()) / 1000000);
+}
+
+function polygonCreate(polygon, coordinates, name, qlUrl, footprint, resolution){
+>>>>>>> 0ba817688b1048ca276a8f7d5794d7347c4bf53d
 	imagePolygon[i] = new google.maps.Polygon({
 		paths: coordinates,
 		strokeColor: '#9933FF',
 		strokeOpacity: 0.8,
 		strokeWeight: 2,
 		fillColor: '#9933FF',
-		fillOpacity: 0.1
+		fillOpacity: 0.1,
+		name: name,
+		qlUrl: qlUrl,
+		footprint: footprint,
+		resolution: resolution
 	});
+	var zindex = Math.floor((350000- countArea(imagePolygon[i])) / 1000 );
+	console.log(zindex);
+	imagePolygon[i].setOptions({zIndex: zindex });
 	imagePolygon[i].setMap(map);
 }
 
 var addListenersOnPolygon = function(polygon, ind) {
 	//listeners
   google.maps.event.addListener(polygon, 'click', function (event) {
-    console.log("You clicked footprint!");
+	
+					  var centerFootprint = centerPoly(footprintEdges(polygon.footprint)[0],footprintEdges(polygon.footprint)[2]); //Находим центр футпринта
+					  var centerNorth = centerPoly(footprintEdges(polygon.footprint)[0],footprintEdges(polygon.footprint)[1]); //Находим центр верхнего края
+					  var centerWest = centerPoly(footprintEdges(polygon.footprint)[0],footprintEdges(polygon.footprint)[3]); //Находим центр левого края
+					  var centerEast = centerPoly(footprintEdges(polygon.footprint)[1],footprintEdges(polygon.footprint)[2]); //Находим центр правого края
+					  var centerSouth = centerPoly(footprintEdges(polygon.footprint)[2],footprintEdges(polygon.footprint)[3]); //Находим центр нижнего края
+					  
+					  var degrees = 0;
+					  if (polygon.resolution === 'MR') {
+						  var imageBounds = {
+							  north: footprintEdges(polygon.footprint)[2][0],
+							  south: footprintEdges(polygon.footprint)[0][0],
+							  east: footprintEdges(polygon.footprint)[1][1],
+							  west: footprintEdges(polygon.footprint)[3][1]
+						  };
+					  }
+					  if (polygon.resolution === 'HR'){
+						  var imageBounds = {
+							  north: footprintEdges(polygon.footprint)[2][0],
+							  south: footprintEdges(polygon.footprint)[0][0],
+							  east: footprintEdges(polygon.footprint)[1][1],
+							  west: footprintEdges(polygon.footprint)[3][1]
+						  };
+					  }
+					  
+					  
+					  degrees = -Math.atan((footprintEdges(polygon.footprint)[0][1] - footprintEdges(polygon.footprint)[3][1])/(footprintEdges(polygon.footprint)[0][0] - footprintEdges(polygon.footprint)[3][0]))*180/Math.PI;
+					  $.post(
+					   "../customer-office/imagerotate.php",
+					   {
+						   qlUrl: polygon.qlUrl,
+						   name: polygon.name,
+						   degrees: degrees
+					   }
+					  ).done(function(data){
+						  var temp;
+						  polygon.qlUrl = data[0];
+						  
+						  overlayQuicklook = new google.maps.GroundOverlay(
+							  polygon.qlUrl,
+							  imageBounds);
+						  overlayQuicklook.setMap(map);
+					  });
+	
+	
+
   });
 
   google.maps.event.addListener(polygon, 'mouseover', function (event) {

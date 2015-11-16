@@ -1,8 +1,8 @@
 <?php
-	if (isset($_POST['qlUrl']) && isset($_POST['name'])){
+	if (isset($_POST['qlUrl']) && isset($_POST['name']) && isset($_POST['degrees'])){
 		$filename = $_POST['qlUrl'];
 		$pathname = "./images/". $_POST['name'] .".png";
-		$degrees = 25;
+		$degrees = $_POST['degrees'];
 		
 		$source = imagecreatefrompng($filename);
 		
@@ -15,10 +15,6 @@
 		imagepng($rotate, $pathname);
 		$data = array();
 		$data[0] = $pathname;
-		$data[1] = $_POST['north'];
-		$data[2] = $_POST['south'];
-		$data[3] = $_POST['east'];
-		$data[4] = $_POST['west'];
 		header('Content-Type: application/json');
 		echo json_encode($data);
 		imagedestroy($source);
