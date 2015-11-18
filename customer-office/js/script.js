@@ -345,7 +345,7 @@ function ($scope, $http, transformRequestAsFormPost){
 						};
 						polygonCoords.push(coord);
 					}
-<<<<<<< HEAD
+
 
 					imagePolygon[i] = new google.maps.Polygon({
 						paths: polygonCoords,
@@ -420,13 +420,12 @@ function ($scope, $http, transformRequestAsFormPost){
 					  
 
 				}
-=======
-					
+
 					polygonCreate(imagePolygon[i], polygonCoords, images[i].name, images[i].qlUrl, images[i].footprint, images[i].resolution);
 					addListenersOnPolygon(imagePolygon[i],i);
 				}
 				/* end */
->>>>>>> 0ba817688b1048ca276a8f7d5794d7347c4bf53d
+
 				
 				$scope.$apply();
 				
@@ -435,16 +434,16 @@ function ($scope, $http, transformRequestAsFormPost){
     }                   
 }]);
 
-<<<<<<< HEAD
+
 
 function polygonCreate(polygon, coordinates){
-=======
+
 function countArea(polygon){
 	return Math.floor(google.maps.geometry.spherical.computeArea(polygon.getPath()) / 1000000);
 }
 
 function polygonCreate(polygon, coordinates, name, qlUrl, footprint, resolution){
->>>>>>> 0ba817688b1048ca276a8f7d5794d7347c4bf53d
+
 	imagePolygon[i] = new google.maps.Polygon({
 		paths: coordinates,
 		strokeColor: '#9933FF',
